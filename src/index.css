@@ -1,0 +1,94 @@
+@import url('https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600;800&family=Noto+Serif+TC:wght@300;400;600;700&family=Inter:wght@300;400;500;700&display=swap');
+
+@import "tailwindcss";
+
+@theme {
+  --font-serif: "Cinzel", "Noto Serif TC", Georgia, Cambria, "Times New Roman", Times, serif;
+  --font-sans: "Inter", system-ui, -apple-system, sans-serif;
+  --font-zh-serif: "Noto Serif TC", "Source Han Serif TC", "Songti TC", serif;
+}
+
+body {
+  background-color: #FAF9F6; /* Luxury Matte Ivory/Alabaster White Rose background */
+  color: #1F1D1C; /* High-contrast elegant dark warm charcoal */
+  font-family: var(--font-sans);
+}
+
+/* Custom Film Grain Noise Overlay simulating a raw art gallery environment */
+.grain-noise-bg {
+  background-image: url('data:image/svg+xml,%3Csvg viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg"%3E%3Cfilter id="noiseFilter"%3E%3CfeTurbulence type="fractalNoise" baseFrequency="0.65" numOctaves="3" stitchTiles="stitch"/%3E%3C/filter%3E%3Crect width="100%25" height="100%25" filter="url(%23noiseFilter)"/%3E%3C/svg%3E');
+}
+
+/* Selection tint match */
+::selection {
+  background-color: rgba(197, 168, 128, 0.25); /* Champagne rose selection */
+  color: #8c6e43;
+}
+
+/* Plaster Wall Surface Texture */
+.plaster-wall {
+  background-color: #E2DBD0; /* Warm beige paint plaster wall background */
+  position: relative;
+}
+.plaster-wall::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  opacity: 0.045;
+  pointer-events: none;
+  background-image: url('data:image/svg+xml,%3Csvg viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg"%3E%3Cfilter id="plasterNoise"%3E%3CfeTurbulence type="fractalNoise" baseFrequency="0.8" numOctaves="4" stitchTiles="stitch"/%3E%3C/filter%3E%3Crect width="100%25" height="100%25" filter="url(%23plasterNoise)"/%3E%3C/svg%3E');
+}
+
+/* Clear plastic protector sheath glossy highlight reflection */
+.glossy-sheen {
+  position: relative;
+  overflow: hidden;
+}
+.glossy-sheen::after {
+  content: "";
+  position: absolute;
+  top: -50%; left: -50%; right: -50%; bottom: -50%;
+  background: linear-gradient(
+    135deg,
+    rgba(255, 255, 255, 0.25) 0%,
+    rgba(255, 255, 255, 0.15) 20%,
+    rgba(255, 255, 255, 0) 40%,
+    rgba(255, 255, 255, 0) 65%,
+    rgba(255, 255, 255, 0.08) 80%,
+    rgba(255, 255, 255, 0.2) 100%
+  );
+  transform: rotate(4deg);
+  pointer-events: none;
+  z-index: 10;
+  transition: transform 0.6s ease;
+}
+.glossy-sheen:hover::after {
+  transform: rotate(6deg) translateY(5px);
+}
+
+/* Double shadow recreating realistic sheet mounted depth */
+.poster-mounted-shadow {
+  box-shadow: 
+    0 1px 2px rgba(0,0,0,0.05), 
+    1px 4px 12px rgba(40,30,20,0.09), 
+    inset 0 1px 0 rgba(255,255,255,0.9);
+}
+.poster-mounted-shadow:hover {
+  box-shadow: 
+    0 2px 5px rgba(0,0,0,0.04), 
+    3px 15px 30px rgba(40,30,20,0.14), 
+    inset 0 1px 0 rgba(255,255,255,0.9);
+}
+
+/* Spotlight glow from ceiling */
+.ceiling-spotlight {
+  background: radial-gradient(circle at 50% -100px, rgba(253, 230, 138, 0.22) 0%, rgba(253, 230, 138, 0.04) 50%, transparent 90%);
+}
+
+.wood-door-grain {
+  background-color: #724c29;
+  background-image: linear-gradient(90deg, rgba(255,255,255,0.03) 1px, transparent 1px),
+                    linear-gradient(0deg, rgba(0,0,0,0.15) 1px, transparent 1px);
+  background-size: 8px 100%, 100% 20px;
+}
+

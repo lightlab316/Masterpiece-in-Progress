@@ -1,0 +1,6 @@
+{
+  "name": "MASTERPIECE IN PROGRESS 奇石・詩・箴言展",
+  "description": "沉浸式線上美術館與博物館導覽：奇石・詩・箴言展。奇石與人生在億萬年磨礪與造就中展現靈性傑作之美。",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}
