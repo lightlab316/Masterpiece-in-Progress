@@ -1,4 +1,4 @@
-@import url('https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600;800&family=Noto+Serif+TC:wght@300;400;600;700&family=Inter:wght@300;400;500;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600;800&family=Noto+Serif+TC:wght@300;400;500;600;700&family=Inter:wght@300;400;500;700&display=swap');
 
 @import "tailwindcss";
 
@@ -9,9 +9,38 @@
 }
 
 body {
-  background-color: #FAF9F6; /* Luxury Matte Ivory/Alabaster White Rose background */
-  color: #1F1D1C; /* High-contrast elegant dark warm charcoal */
+  background-color: #FAF6ED; /* Warm ivory gallery color */
+  color: #2C241B; /* High-contrast elegant dark warm charcoal */
   font-family: var(--font-sans);
+}
+
+/* Custom animation keyframes */
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(12px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.animate-fade-in {
+  animation: fadeIn 0.55s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+
+@keyframes pulseGlow {
+  0%, 100% {
+    box-shadow: 0 0 0 0 rgba(175, 143, 92, 0.6);
+  }
+  50% {
+    box-shadow: 0 0 0 10px rgba(175, 143, 92, 0);
+  }
+}
+
+.animate-pulse-glow {
+  animation: pulseGlow 2s infinite;
 }
 
 /* Custom Film Grain Noise Overlay simulating a raw art gallery environment */
@@ -50,12 +79,12 @@ body {
   top: -50%; left: -50%; right: -50%; bottom: -50%;
   background: linear-gradient(
     135deg,
-    rgba(255, 255, 255, 0.25) 0%,
-    rgba(255, 255, 255, 0.15) 20%,
+    rgba(255, 255, 255, 0.22) 0%,
+    rgba(255, 255, 255, 0.12) 20%,
     rgba(255, 255, 255, 0) 40%,
     rgba(255, 255, 255, 0) 65%,
     rgba(255, 255, 255, 0.08) 80%,
-    rgba(255, 255, 255, 0.2) 100%
+    rgba(255, 255, 255, 0.18) 100%
   );
   transform: rotate(4deg);
   pointer-events: none;
@@ -63,7 +92,7 @@ body {
   transition: transform 0.6s ease;
 }
 .glossy-sheen:hover::after {
-  transform: rotate(6deg) translateY(5px);
+  transform: rotate(6deg) translateY(5.5px);
 }
 
 /* Double shadow recreating realistic sheet mounted depth */
@@ -91,4 +120,3 @@ body {
                     linear-gradient(0deg, rgba(0,0,0,0.15) 1px, transparent 1px);
   background-size: 8px 100%, 100% 20px;
 }
-

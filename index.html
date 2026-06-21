@@ -1,13 +1,763 @@
 <!doctype html>
-<html lang="en">
+<html lang="zh-TW" class="scroll-smooth">
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Masterpiece in Progress</title>
+    <title>MASTERPIECE IN PROGRESS | 奇石・詩・箴言展</title>
+    <!-- Web Font Imports -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600;700;800&family=Noto+Serif+TC:wght@300;400;500;600;700&family=Inter:wght@355;455;555;700&display=swap" rel="stylesheet">
+    
+    <!-- Include compiled entry script -->
+    <script type="module" src="/src/main.ts"></script>
   </head>
-  <body>
-    <div id="root"></div>
-    <script type="module" src="/src/main.tsx"></script>
+  <body class="bg-[#FAF6ED] text-[#2C241B] min-h-screen relative overflow-x-hidden transition-all duration-500 font-sans selection:bg-[#EAE1D0] selection:text-[#8A6D3B]">
+    
+    <!-- Background Watercolor & Blurry Parchment Overlays -->
+    <div class="fixed top-0 left-0 w-[600px] h-[600px] rounded-full bg-radial from-[#F5EAD4] to-transparent opacity-50 -translate-x-1/4 -translate-y-1/4 pointer-events-none z-0"></div>
+    <div class="fixed bottom-0 right-0 w-[700px] h-[700px] rounded-full bg-radial from-[#EDE4D5] to-transparent opacity-45 translate-x-1/4 translate-y-1/4 pointer-events-none z-0"></div>
+    <div class="fixed top-1/3 left-1/3 w-[450px] h-[450px] rounded-full bg-radial from-[#FAF1DF]/75 to-transparent opacity-40 blur-[110px] pointer-events-none z-0"></div>
+
+    <!-- MAIN ROOT CONTAINER: Responsive Grid Layout (Aside Nav on Left / Content on Right) -->
+    <div class="relative min-h-screen flex flex-col lg:flex-row z-10">
+      
+      <!--=========================================
+          SIDEBAR NAVIGATION (Parchment & Gold Accents)
+          =========================================-->
+      <aside class="w-full lg:w-80 lg:min-h-screen lg:sticky lg:top-0 bg-[#FDFBF7] border-b lg:border-b-0 lg:border-r border-[#EAA2C1]/20 lg:border-r-[#E5DFC4] px-6 py-6 lg:py-10 flex flex-col justify-between shrink-0 shadow-xs z-30 select-none">
+        
+        <div>
+          <!-- Exhibition Identity / Logo Container -->
+          <div class="flex flex-col items-center lg:items-start space-y-2 mb-8 cursor-default">
+            <span class="text-[11px] lg:text-xs tracking-[0.32em] text-[#AF8F5C] font-serif font-bold">ONLINE EXHIBITION</span>
+            <h1 class="text-2xl lg:text-3xl font-serif tracking-[0.12em] font-extrabold text-[#2C241B] text-center lg:text-left">
+              MASTERPIECE
+            </h1>
+            <h1 class="text-[18px] lg:text-[20px] font-serif tracking-[0.18em] text-[#AF8F5C] -mt-1 font-bold">
+              IN PROGRESS
+            </h1>
+            <div class="flex items-center space-x-2 my-1">
+              <span class="h-[1px] w-6 bg-[#AF8F5C] opacity-50"></span>
+              <span class="text-xs lg:text-sm text-[#6E5F4E] font-medium tracking-[0.18em] font-zh-serif">奇石・詩・箴言展</span>
+              <span class="h-[1px] w-6 bg-[#AF8F5C] opacity-50"></span>
+            </div>
+          </div>
+
+          <!-- Navigation Links -->
+          <nav class="flex flex-row lg:flex-col flex-wrap justify-center lg:justify-start gap-1 py-2" id="navigation-root">
+            
+            <button data-tab="home" class="nav-btn w-auto lg:w-full flex items-center space-x-3.5 px-4 py-3 rounded-xs transition-all duration-300 relative text-left text-[#8A6D3B] font-semibold bg-[#FAF4E5] shadow-[inset_1px_1px_0_rgba(255,255,255,1)] border border-[#E1D3B4]">
+              <!-- Home Icon SVG -->
+              <svg class="w-4 h-4 text-[#AF8F5C]" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                <path stroke-linecap="round" stroke-linejoin="round" d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6" />
+              </svg>
+              <div class="text-left">
+                <span class="block font-zh-serif leading-none text-[15px] lg:text-[16px] tracking-wide">展覽首頁</span>
+                <span class="block text-[10px] text-[#A5998A] tracking-wider leading-none mt-1 font-serif font-medium">HOME</span>
+              </div>
+              <span class="nav-dot absolute right-3 top-1/2 -translate-y-1/2 w-1.5 h-1.5 rounded-full bg-[#AF8F5C]"></span>
+            </button>
+
+            <button data-tab="intro" class="nav-btn w-auto lg:w-full flex items-center space-x-3.5 px-4 py-3 rounded-xs transition-all duration-300 relative text-left text-[#6E5F4E] border border-transparent hover:bg-[#FAF6EE]/75">
+              <!-- Grid/Orient Icon SVG -->
+              <svg class="w-4 h-4 text-stone-400" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                <path stroke-linecap="round" stroke-linejoin="round" d="M19 11H5m14 0a2 2 0 012 2v6a2 2 0 01-2 2H5a2 2 0 01-2-2v-6a2 2 0 012-2m14 0V9a2 2 0 00-2-2M5 11V9a2 2 0 012-2m0 0V5a2 2 0 012-2h6a2 2 0 012 2v2M7 7h10" />
+              </svg>
+              <div class="text-left">
+                <span class="block font-zh-serif leading-none text-[15px] lg:text-[16px] tracking-wide">展覽介紹</span>
+                <span class="block text-[10px] text-[#A5998A] tracking-wider leading-none mt-1 font-serif font-medium">ORIENTATION</span>
+              </div>
+              <span class="nav-dot hidden absolute right-3 top-1/2 -translate-y-1/2 w-1.5 h-1.5 rounded-full bg-[#AF8F5C]"></span>
+            </button>
+
+            <button data-tab="stories" class="nav-btn w-auto lg:w-full flex items-center space-x-3.5 px-4 py-3 rounded-xs transition-all duration-300 relative text-left text-[#6E5F4E] border border-transparent hover:bg-[#FAF6EE]/75">
+              <!-- Compass Icon SVG -->
+              <svg class="w-4 h-4 text-stone-400" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                <path stroke-linecap="round" stroke-linejoin="round" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z" />
+              </svg>
+              <div class="text-left">
+                <span class="block font-zh-serif leading-none text-[15px] lg:text-[16px] tracking-wide font-medium">形象石故事</span>
+                <span class="block text-[10px] text-[#A5998A] tracking-wider leading-none mt-1 font-serif font-medium">STONE STORIES</span>
+              </div>
+              <span class="nav-dot hidden absolute right-3 top-1/2 -translate-y-1/2 w-1.5 h-1.5 rounded-full bg-[#AF8F5C]"></span>
+            </button>
+
+            <button data-tab="poems" class="nav-btn w-auto lg:w-full flex items-center space-x-3.5 px-4 py-3 rounded-xs transition-all duration-300 relative text-left text-[#6E5F4E] border border-transparent hover:bg-[#FAF6EE]/75">
+              <!-- Poem Book Icon SVG -->
+              <svg class="w-4 h-4 text-stone-400" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                <path stroke-linecap="round" stroke-linejoin="round" d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253" />
+              </svg>
+              <div class="text-left">
+                <span class="block font-zh-serif leading-none text-[15px] lg:text-[16px] tracking-wide font-medium">靈感的詩</span>
+                <span class="block text-[10px] text-[#A5998A] tracking-wider leading-none mt-1 font-serif font-medium">SPIRIT POEMS</span>
+              </div>
+              <span class="nav-dot hidden absolute right-3 top-1/2 -translate-y-1/2 w-1.5 h-1.5 rounded-full bg-[#AF8F5C]"></span>
+            </button>
+
+            <button data-tab="proverbs" class="nav-btn w-auto lg:w-full flex items-center space-x-3.5 px-4 py-3 rounded-xs transition-all duration-300 relative text-left text-[#6E5F4E] border border-transparent hover:bg-[#FAF6EE]/75">
+              <!-- Sparks Icon SVG -->
+              <svg class="w-4 h-4 text-stone-400" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                <path stroke-linecap="round" stroke-linejoin="round" d="M5 3v4M3 5h4M6 17v4m-2-2h4m5-16l2.286 6.857L21 12l-5.714 2.143L13 21l-2.286-6.857L5 12l5.714-2.143L13 3z" />
+              </svg>
+              <div class="text-left">
+                <span class="block font-zh-serif leading-none text-[15px] lg:text-[16px] tracking-wide font-medium">箴言話語</span>
+                <span class="block text-[10px] text-[#A5998A] tracking-wider leading-none mt-1 font-serif font-medium">SOUL CHIMES</span>
+              </div>
+              <span class="nav-dot hidden absolute right-3 top-1/2 -translate-y-1/2 w-1.5 h-1.5 rounded-full bg-[#AF8F5C]"></span>
+            </button>
+
+          </nav>
+        </div>
+
+        <!-- Dynamic Ambient Sounds System Footer -->
+        <div class="mt-8 pt-5 border-t border-[#E5DFC4] flex flex-col space-y-3 p-4 bg-[#FAF6EE]/60 rounded-xs">
+          <div class="flex items-center justify-between">
+            <div class="flex items-center space-x-2">
+              <span id="bgm-pulse" class="w-2.5 h-2.5 rounded-full bg-stone-300"></span>
+              <span class="text-[12px] text-[#6E5F4E] tracking-wider font-zh-serif font-semibold">展廳靜謐背景樂</span>
+            </div>
+            <button
+              id="bgm-toggle-btn"
+              class="p-2 rounded-full border border-stone-200 bg-white text-stone-400 hover:text-[#8A6D3B] hover:border-[#AF8F5C] transition-all duration-300 cursor-pointer shadow-xs"
+              title="開啟/關閉展間頌缽靜心音樂"
+            >
+              <!-- Volume Icon -->
+              <svg id="bgm-icon-on" class="w-4 h-4 hidden text-[#AF8F5C]" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                <path stroke-linecap="round" stroke-linejoin="round" d="M15.536 8.464a5 5 0 010 7.072m2.828-9.9a9 9 0 010 12.728M5.586 15H4a1 1 0 01-1-1v-4a1 1 0 011-1h1.586l4.707-4.707C10.923 3.663 12 4.109 12 5v14c0 .891-1.077 1.337-1.707.707L5.586 15z" />
+              </svg>
+              <svg id="bgm-icon-off" class="w-4 h-4 text-stone-400" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                <path stroke-linecap="round" stroke-linejoin="round" d="M5.586 15H4a1 1 0 01-1-1v-4a1 1 0 011-1h1.586l4.707-4.707C10.923 3.663 12 4.109 12 5v14c0 .891-1.077 1.337-1.707.707L5.586 15zm11.364-8.5l-6.364 6.364m0-6.364l6.364 6.364" />
+              </svg>
+            </button>
+          </div>
+          <p class="text-[11px] text-stone-500 font-zh-serif leading-relaxed text-justify">
+            「寂靜空靈，純淨悠揚。點擊按鈕，播送深邃大自然空靈頌缽與風鈴低吟，體會沉浸式藝術展間氛圍。」
+          </p>
+        </div>
+      </aside>
+
+      <!--=========================================
+          AUDIO READING FLOATING STATUS NOTIFIER
+          =========================================-->
+      <div id="tts-floating-banner" class="fixed top-4 right-4 left-4 lg:left-auto lg:w-96 bg-[#FFFDF9] border border-[#E6D9BD] p-4 rounded-xs shadow-lg z-50 transition-all duration-300 opacity-0 pointer-events-none scale-95">
+        <div class="flex items-start space-x-3.5">
+          <span class="w-9 h-9 rounded-full bg-[#AF8F5C]/10 flex items-center justify-center shrink-0 border border-[#AF8F5C]/20 text-[#8A6D3B]">
+            <svg class="w-5 h-5 text-[#AF8F5C] animate-pulse" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+              <path stroke-linecap="round" stroke-linejoin="round" d="M19 11a7 7 0 01-7 7m0 0a7 7 0 01-7-7m7 7v4m0 0H8m4 0h4m-4-8a3 3 0 01-3-3V5a3 3 0 116 0v6a3 3 0 01-3 3z" />
+            </svg>
+          </span>
+          <div class="flex-1 overflow-hidden">
+            <div class="flex items-center justify-between">
+              <span class="text-[11px] uppercase text-[#AF8F5C] tracking-[0.2em] font-bold font-serif">展間語音導覽導讀</span>
+              <button id="tts-stop-btn" class="text-stone-400 hover:text-[#2C241B] transition-colors p-1 rounded-sm cursor-pointer">
+                <svg class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                  <path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12" />
+                </svg>
+              </button>
+            </div>
+            <p id="tts-tour-title" class="text-[14px] font-bold text-[#2C241B] tracking-wide mt-1 truncate font-zh-serif">正在聽講：經典展品</p>
+            <div class="flex items-center space-x-1.5 mt-2.5">
+              <span class="w-1.5 h-3.5 bg-[#AF8F5C] rounded-full animate-bounce"></span>
+              <span class="w-1.5 h-5 bg-[#AF8F5C] rounded-full animate-bounce" style="animation-delay: 0.15s"></span>
+              <span class="w-1.5 h-3 bg-[#AF8F5C] rounded-full animate-bounce" style="animation-delay: 0.3s"></span>
+              <span class="w-1.5 h-4.5 bg-[#AF8F5C] rounded-full animate-bounce" style="animation-delay: 0.45s"></span>
+              <span class="text-[11px] text-[#8A6D3B] ml-2 font-zh-serif font-medium">心靈安靜聆聽中...</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!--=========================================
+          MAIN CONTENT AREA
+          =========================================-->
+      <main class="flex-1 py-8 lg:py-12 px-4 sm:px-8 lg:px-14 flex flex-col justify-between overflow-x-hidden">
+        
+        <!--=======================================================
+            ROOM 1: 首頁 (HOME)
+            =======================================================-->
+        <section id="room-home" class="room-section flex flex-col justify-between space-y-16 animate-fade-in">
+          
+          <div class="grid grid-cols-1 xl:grid-cols-12 gap-8 items-center pt-4">
+            
+            <div class="xl:col-span-5 flex flex-col space-y-7 text-center xl:text-left">
+              <div class="space-y-2 cursor-default">
+                <span class="text-[12px] font-bold text-[#AF8F5C] tracking-[0.38em] block font-serif">奇石・詩・箴言展</span>
+                <h1 class="text-4xl sm:text-5xl xl:text-6xl font-serif text-[#2C241B] tracking-wider leading-tight uppercase font-medium">
+                  MASTERPIECE
+                </h1>
+              </div>
+
+              <div class="h-[3px] w-28 bg-[#E2D5BE] mx-auto xl:mx-0"></div>
+
+              <!-- Parchment Frame of Core Slogan -->
+              <div class="relative p-1 bg-white/10 border border-[#E8DFC2]/30 rounded-xs select-text">
+                <div class="border border-[#EBDCB7] p-6 sm:p-8 bg-[#FCFAF6]/95 rounded-xs text-center xl:text-left relative shadow-xs">
+                  <span class="absolute top-2.5 left-3 text-[10px] text-[#A5998A] font-serif tracking-[0.2em] font-semibold opacity-60">CORE BELIEF</span>
+                  <p class="text-[#3A3226] font-zh-serif font-bold text-[18px] sm:text-[20px] leading-relaxed tracking-wider py-5 text-center xl:text-left">
+                    「石頭、萬物、人，<br class="hidden sm:block" />
+                    &nbsp;&nbsp;&nbsp;&nbsp;都是神親手雕刻的傑作品。」
+                  </p>
+                  
+                </div>
+              </div>
+
+              <!-- Button CTA -->
+              <div class="pt-2 flex flex-col sm:flex-row justify-center xl:justify-start gap-4">
+                <button
+                  id="btn-goto-intro"
+                  class="group flex items-center justify-center space-x-2.5 px-10 py-4 bg-gradient-to-r from-[#B0905D] to-[#917548] text-white rounded-xs shadow-md hover:shadow-lg hover:from-[#9B7D4F] hover:to-[#7E653C] transition-all duration-300 font-bold tracking-widest cursor-pointer"
+                >
+                  <span class="font-zh-serif tracking-[0.22em] text-[15px]">進入展覽</span>
+                  <!-- Chevron Right SVG -->
+                  <svg class="w-4.5 h-4.5 group-hover:translate-x-2 transition-transform duration-300 text-amber-200" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5">
+                    <path stroke-linecap="round" stroke-linejoin="round" d="M9 5l7 7-7 7" />
+                  </svg>
+                </button>
+                <button
+                  id="btn-goto-stories"
+                  class="px-9 py-4 border-2 border-[#AF8F5C] text-[#8A6D3B] tracking-widest bg-white/70 hover:bg-white rounded-xs hover:text-[#5E4A28] hover:border-[#8A6D3B] transition-all duration-300 text-[15px] font-bold font-zh-serif cursor-pointer shadow-xs"
+                >
+                  瀏覽形象石物語
+                </button>
+              </div>
+            </div>
+
+            <!-- Primary Aesthetic Visual - Majestic Interactive Elephant Hero Stone Card -->
+            <div class="xl:col-span-7 flex justify-center">
+              <div class="relative max-w-md w-full border border-[#E3D6C1] p-6 sm:p-7 bg-white poster-mounted-shadow rounded-sm glossy-sheen">
+                <span class="absolute top-2.5 left-4 text-[10px] text-[#A5998A] font-serif tracking-[0.25em] font-semibold opacity-70">EXHIBIT MASTER VISUAL</span>
+                <span class="absolute bottom-2.5 right-4 text-[10px] text-[#A5998A] font-serif tracking-[0.16em] font-semibold opacity-70">© MASTERPIECE IN PROGRESS</span>
+                
+                <!-- Main image stage with active interactive hotspots -->
+                <div class="relative aspect-[3/4] w-full rounded-xs border border-stone-200 overflow-hidden group select-none">
+                  <img
+                    id="hero-stone-img"
+                    src="https://images.unsplash.com/photo-1504198453319-5ce911bafcde?q=80&w=800"
+                    alt="萬古大象奇石傑作"
+                    class="w-full h-full object-cover grayscale-[2%] brightness-[96%] transition-transform duration-1000 group-hover:scale-103"
+                    referrerPolicy="no-referrer"
+                  />
+                  <div class="absolute inset-0 bg-gradient-to-t from-black/35 via-transparent to-transparent opacity-80 z-10 pointer-events-none"></div>
+
+                  <!-- Hotspot Marker 1 -->
+                  <div class="absolute top-[28%] left-[45%] z-20">
+                    <button
+                      data-marker="1"
+                      class="hero-marker w-6 h-6 rounded-full bg-[#AF8F5C] border-2 border-white flex items-center justify-center text-[11px] text-white font-extrabold cursor-pointer shadow-lg animate-pulse hover:scale-115 transition-transform duration-300"
+                    >
+                      1
+                    </button>
+                    <!-- Hotspot Bubble 1 -->
+                    <div class="marker-bubble hidden absolute top-7 left-0 bg-[#FFFDF9] border border-[#AF8F5C] text-stone-800 text-[14px] py-2 px-3.5 rounded-xs shadow-lg min-w-[200px] z-30 font-zh-serif leading-relaxed">
+                      <p class="font-bold text-[#8A6D3B] border-b border-stone-100 pb-1 mb-1">天然刻鑿</p>
+                      經歷千古風沙與地殼張力，頑石磨礪出如大象般寬厚、起伏交錯的驚人形象。
+                    </div>
+                  </div>
+
+                  <!-- Hotspot Marker 2 -->
+                  <div class="absolute top-[52%] left-[68%] z-20">
+                    <button
+                      data-marker="2"
+                      class="hero-marker w-6 h-6 rounded-full bg-[#AF8F5C] border-2 border-white flex items-center justify-center text-[11px] text-white font-extrabold cursor-pointer shadow-lg animate-pulse hover:scale-115 transition-transform duration-300"
+                    >
+                      2
+                    </button>
+                    <!-- Hotspot Bubble 2 -->
+                    <div class="marker-bubble hidden absolute top-7 right-0 bg-[#FFFDF9] border border-[#AF8F5C] text-stone-800 text-[14px] py-2 px-3.5 rounded-xs shadow-lg min-w-[200px] z-30 font-zh-serif leading-relaxed">
+                      <p class="font-bold text-[#8A6D3B] border-b border-stone-100 pb-1 mb-1">尋求正確視角</p>
+                      若只從庸碌世俗的角度看，它只是一尊荒野中孤傲的糙石。但若調校核心靈角度，大象栩栩如生。
+                    </div>
+                  </div>
+
+                  <!-- Hotspot Marker 3 -->
+                  <div class="absolute top-[75%] left-[30%] z-20">
+                    <button
+                      data-marker="3"
+                      class="hero-marker w-6 h-6 rounded-full bg-[#AF8F5C] border-2 border-white flex items-center justify-center text-[11px] text-white font-extrabold cursor-pointer shadow-lg animate-pulse hover:scale-115 transition-transform duration-300"
+                    >
+                      3
+                    </button>
+                    <!-- Hotspot Bubble 3 -->
+                    <div class="marker-bubble hidden absolute top-7 left-0 bg-[#FFFDF9] border border-[#AF8F5C] text-stone-800 text-[14px] py-2 px-3.5 rounded-xs shadow-lg min-w-[200px] z-30 font-zh-serif leading-relaxed">
+                      <p class="font-bold text-[#8A6D3B] border-b border-stone-100 pb-1 mb-1">生命雕塑</p>
+                      每個人如同一枚珍寶原石，也是歷經種種挑戰與歲月洗禮，最終被修剪、被造就成驚天傑作。
+                    </div>
+                  </div>
+
+                  <!-- Float label inside visual -->
+                  <div class="absolute bottom-5 left-5 bg-white/95 px-4.5 py-3 border-l-4 border-[#AF8F5C] shadow-md z-20 select-text">
+                    <h4 class="text-[14px] font-serif font-extrabold tracking-widest text-[#2C241B]">大象石 • ELEPHANT STONE</h4>
+                    <p class="text-[11px] text-[#AF8F5C] tracking-wide mt-0.5 font-zh-serif">MIP經典第 4 號傑作</p>
+                  </div>
+                </div>
+
+                <!-- Footer label under hero visual -->
+                <div class="mt-4 pt-3.5 border-t border-[#E8DFC2]/70 flex items-center justify-between text-[13px] text-[#6E5F4E] font-zh-serif font-medium cursor-default">
+                  <span>虛擬展廳 No. G04 裝置空間</span>
+                  <span class="text-[#AF8F5C]">點擊標記 ( 1、2、3 ) 閱讀展品手記</span>
+                </div>
+              </div>
+            </div>
+
+          </div>
+
+          <!-- Wisdom Slogan Divider Ribon banner -->
+          <div class="py-8 border-y border-[#E8DFC2] text-center px-6 max-w-4xl mx-auto select-text">
+            <span class="inline-block text-[#AF8F5C] text-base mb-2">🌿  ❦  🌿</span>
+            <p class="text-[#4E3F30] font-zh-serif text-[16px] sm:text-[18px] leading-relaxed tracking-[0.18em] font-medium">
+              「每一顆看似粗糙的奇石，都經歷了漫長而孤寂的歲月洗禮、浪潮狂風的磨礪；<br class="hidden md:block"/>
+              每一個人，也都有專屬於自己被智慧造就與琢磨的榮耀靈魂故事。」
+            </p>
+            <span class="block text-[11px] text-stone-400 mt-2.5 font-serif tracking-widest uppercase font-bold">── UNVEILING INDIVIDUAL MAJESTY FROM CHRONICLES OF TIME</span>
+          </div>
+
+          <!-- Entry cards with responsive columns -->
+          <div class="space-y-6">
+            <h3 class="text-center text-[12px] tracking-[0.35em] font-serif font-bold text-[#AF8F5C] uppercase">
+              選 擇 展 區 進 階 入 口 • MUSEUM SPATIAL MATRIX
+            </h3>
+            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-5 pb-6">
+              
+              <button data-goto-tab="intro" class="p-6 bg-white border border-[#E8DFC2] hover:border-[#AF8F5C] rounded-xs text-left transition-all duration-300 hover:-translate-y-1.5 hover:shadow-md group flex flex-col justify-between cursor-pointer">
+                <div>
+                  <div class="flex items-center justify-between text-[#AF8F5C] border-b border-[#FAF6EE] pb-2 mb-4">
+                    <span class="text-[11px] font-bold tracking-widest font-serif">SECTION 01</span>
+                    <span class="text-xl">⚖️</span>
+                  </div>
+                  <h4 class="text-[16px] font-zh-serif font-bold text-[#2C241B] group-hover:text-[#8A6D3B] transition-colors">
+                    展覽介紹
+                  </h4>
+                  <p class="text-[13px] text-[#6E5F4E] leading-relaxed mt-2 font-zh-serif font-medium">
+                    認識奇石在漫長自然運化中的起源，探索原石與人格造就之間的美麗對話。
+                  </p>
+                </div>
+                <div class="flex items-center space-x-1 text-[#AF8F5C] mt-5 self-end text-[11px] font-serif tracking-widest font-semibold uppercase">
+                  <span>ENTER</span>
+                  <svg class="w-3.5 h-3.5 group-hover:translate-x-1.5 duration-300" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M9 5l7 7-7 7" /></svg>
+                </div>
+              </button>
+
+              <button data-goto-tab="stories" class="p-6 bg-white border border-[#E8DFC2] hover:border-[#AF8F5C] rounded-xs text-left transition-all duration-300 hover:-translate-y-1.5 hover:shadow-md group flex flex-col justify-between cursor-pointer">
+                <div>
+                  <div class="flex items-center justify-between text-[#AF8F5C] border-b border-[#FAF6EE] pb-2 mb-4">
+                    <span class="text-[11px] font-bold tracking-widest font-serif">SECTION 02</span>
+                    <span class="text-xl">🧭</span>
+                  </div>
+                  <h4 class="text-[16px] font-zh-serif font-bold text-[#2C241B] group-hover:text-[#8A6D3B] transition-colors">
+                    形象石故事
+                  </h4>
+                  <p class="text-[13px] text-[#6E5F4E] leading-relaxed mt-2 font-zh-serif font-medium">
+                    六尊天然雕琢奇石，輔以輪播與點擊放大解說牌，聆聽生命啟示的語音說明。
+                  </p>
+                </div>
+                <div class="flex items-center space-x-1 text-[#AF8F5C] mt-5 self-end text-[11px] font-serif tracking-widest font-semibold uppercase">
+                  <span>ENTER</span>
+                  <svg class="w-3.5 h-3.5 group-hover:translate-x-1.5 duration-300" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M9 5l7 7-7 7" /></svg>
+                </div>
+              </button>
+
+              <button data-goto-tab="poems" class="p-6 bg-white border border-[#E8DFC2] hover:border-[#AF8F5C] rounded-xs text-left transition-all duration-300 hover:-translate-y-1.5 hover:shadow-md group flex flex-col justify-between cursor-pointer">
+                <div>
+                  <div class="flex items-center justify-between text-[#AF8F5C] border-b border-[#FAF6EE] pb-2 mb-4">
+                    <span class="text-[11px] font-bold tracking-widest font-serif">SECTION 03</span>
+                    <span class="text-xl">📜</span>
+                  </div>
+                  <h4 class="text-[16px] font-zh-serif font-bold text-[#2C241B] group-hover:text-[#8A6D3B] transition-colors">
+                    靈感的詩
+                  </h4>
+                  <p class="text-[13px] text-[#6E5F4E] leading-relaxed mt-2 font-zh-serif font-medium">
+                    精美裝裱在展牆上的八首靈魂詩卡。點擊展開古舊紙頁，享用靜定。
+                  </p>
+                </div>
+                <div class="flex items-center space-x-1 text-[#AF8F5C] mt-5 self-end text-[11px] font-serif tracking-widest font-semibold uppercase">
+                  <span>ENTER</span>
+                  <svg class="w-3.5 h-3.5 group-hover:translate-x-1.5 duration-300" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M9 5l7 7-7 7" /></svg>
+                </div>
+              </button>
+
+              <button data-goto-tab="proverbs" class="p-6 bg-white border border-[#E8DFC2] hover:border-[#AF8F5C] rounded-xs text-left transition-all duration-300 hover:-translate-y-1.5 hover:shadow-md group flex flex-col justify-between cursor-pointer">
+                <div>
+                  <div class="flex items-center justify-between text-[#AF8F5C] border-b border-[#FAF6EE] pb-2 mb-4">
+                    <span class="text-[11px] font-bold tracking-widest font-serif">SECTION 04</span>
+                    <span class="text-xl">💎</span>
+                  </div>
+                  <h4 class="text-[16px] font-zh-serif font-bold text-[#2C241B] group-hover:text-[#8A6D3B] transition-colors">
+                    箴言話語
+                  </h4>
+                  <p class="text-[13px] text-[#6E5F4E] leading-relaxed mt-2 font-zh-serif font-medium">
+                    互動式脈搏抽籤。自「希望、平安、勇氣、愛」寶石中求取今日心靈點撥。
+                  </p>
+                </div>
+                <div class="flex items-center space-x-1 text-[#AF8F5C] mt-5 self-end text-[11px] font-serif tracking-widest font-semibold uppercase">
+                  <span>ENTER</span>
+                  <svg class="w-3.5 h-3.5 group-hover:translate-x-1.5 duration-300" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M9 5l7 7-7 7" /></svg>
+                </div>
+              </button>
+
+            </div>
+          </div>
+
+        </section>
+
+        <!--=======================================================
+            ROOM 2: 展覽介紹 (ORIENTATION)
+            =======================================================-->
+        <section id="room-intro" class="room-section hidden flex flex-col space-y-16 animate-fade-in">
+          
+          <!-- Tab Header -->
+          <div class="text-center py-4 select-none">
+            <span class="text-[#AF8F5C] text-xs font-bold tracking-[0.2em] block">❦ 奇石・詩・箴言展 ❦</span>
+            <h2 class="text-3xl sm:text-4xl font-zh-serif tracking-[0.2em] font-extrabold text-[#2C241B] mt-2">
+              Masterpiece-in-Progress
+            </h2>
+            <p class="text-[11px] text-stone-400 font-serif tracking-widest uppercase mt-1">石頭、萬物、人都是 神親手雕刻的傑作品。</p>
+          </div>
+
+          <!-- Primary narrative wall panel with gorgeous border -->
+          <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 items-center bg-white border border-[#E5DFC4] p-6 sm:p-9 rounded-sm shadow-xs relative overflow-hidden select-text">
+            
+            <div class="lg:col-span-7 flex flex-col space-y-5">
+              <span class="text-[12px] font-bold text-[#AF8F5C] tracking-widest uppercase font-serif">ORIENTATION BOARD • 展區引言牆</span>
+              <h3 class="text-xl sm:text-2xl font-zh-serif font-black text-[#2C241B]">「奇石是如何生成的？」</h3>
+              
+              <div class="h-[2px] w-24 bg-[#E2D5BE]"></div>
+
+              <div class="text-[15px] sm:text-[17px] leading-relaxed text-[#3A3226] space-y-4 font-zh-serif text-justify">
+                <p>
+                  在我們的日常認知裡，石頭通常是沉默、堅硬、沒有故事的存在。但有些石頭，卻讓人無法再用「普通的物件」去看待它。它們誕生於漫長的自然過程之中。在水流、風化與時間的作用下，被慢慢塑造成形，而具備了各種形象和模樣，也因而有了傳說和故事。這些石頭，我們稱之為——奇石。當人們開始仔細觀看時，便會發現：有些石頭，不只是石頭。它們承載著形象、故事與價值，甚至映照出人觀看世界的方式。
+                </p>
+                <p class="font-bold text-[#8A6D3B] bg-[#FAF5EE] p-4.5 border-l-4 border-[#AF8F5C] rounded-xs text-[15px] sm:text-[17px]">
+                  邀請你慢慢走進這場展覽，從不同的角度觀看、思考與發現——或許，你也會在某一顆石頭之中，看見某些關於自己的形象。
+                </p>
+              </div>
+            </div>
+
+            <!-- Beautiful landscape photo representing geological movement -->
+            <div class="lg:col-span-5 relative w-full h-80 overflow-hidden rounded-xs border border-stone-200 shadow-sm">
+              <img
+                src="https://github.com/lightlab316/Masterpiece-in-Progress/blob/main/src/%E5%B1%95%E8%A6%BDDM.jpg?raw=true"
+                alt="Masterpiece-in-Progress"
+                class="w-full h-full object-cover grayscale-[3%] brightness-[96%]"
+                referrerPolicy="no-referrer"
+              />
+              <div class="absolute inset-0 bg-gradient-to-t from-black/45 via-black/10 to-transparent z-10"></div>
+         
+            </div>
+
+          </div>
+
+          <!-- Two Classic Stones Cabinets representing Meat Jasper and Grandmother Stone -->
+          <div class="space-y-8 select-text">
+            <div class="text-center select-none">
+              <span class="inline-block h-[1px] w-14 bg-[#AF8F5C]/40 align-middle"></span>
+              <h3 class="inline-block text-xs uppercase tracking-[0.25em] font-serif font-black text-[#AF8F5C] mx-3">
+                 奇 石 導 覽 • HISTORIC MASTERPIECE
+              </h3>
+              <span class="inline-block h-[1px] w-14 bg-[#AF8F5C]/40 align-middle"></span>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+              
+              <!-- Cabinet 1: Meat Jasper (肉形石) -->
+              <div class="bg-[#FFFDF9] border border-[#E8DFC2] p-6 sm:p-7 rounded-sm shadow-xs flex flex-col justify-between hover:border-[#AF8F5C] transition-all duration-300">
+                <div>
+                  <!-- Image containing direct reference to target file -->
+                  <div class="relative aspect-video w-full rounded-xs border border-stone-200 overflow-hidden mb-5 bg-[#FAF6ED]">
+                    <img
+                      src="https://github.com/lightlab316/Masterpiece-in-Progress/blob/main/src/%E3%80%8A%E8%82%89%E5%BD%A2%E7%9F%B3%E3%80%8B-1.jpg?raw=true"
+                      alt="肉形石 經典名品"
+                      class="w-full h-full object-cover grayscale-[1%] brightness-[99%] hover:scale-103 transition-transform duration-500"
+                      referrerPolicy="no-referrer"
+                      onerror="this.onerror=null; this.src='https://github.com/lightlab316/Masterpiece-in-Progress/blob/main/src/%E3%80%8A%E6%AD%B2%E6%9C%88%E3%80%8B-1.jpg?raw=true';"
+                    />
+                  
+                  </div>
+                  
+                  <div class="flex items-center justify-between mb-2">
+                    <h4 class="text-xl font-zh-serif font-black text-[#2C241B]" id="exhibit-stone-a-title">肉形石 (Meat Jasper)</h4>
+                  </div>
+                  <p class="text-[12px] text-[#A5998A] font-zh-serif tracking-widest uppercase mb-3 font-semibold">清代宮廷秘寶 • 天然碧石瑪瑙</p>
+                  
+                  <p class="text-[14px] sm:text-[15px] text-[#5E5142] font-zh-serif leading-relaxed text-justify mb-5" id="exhibit-stone-a-desc">
+                    一塊渾然天成的瑪瑙石。工匠敏銳地看出了它大自然生成的水平分層，由上至下雕染出醬肉油潤之色，更在表面精心鑿出緊密的毛孔，宛如新鮮起鍋的東坡肉。這是造物主天然之美與工匠細碎栽培造就的和諧共鳴。
+                  </p>
+                </div>
+
+
+              </div>
+
+              <!-- Cabinet 2: Grandmother Stone (歲月／老奶奶石) -->
+              <div class="bg-[#FFFDF9] border border-[#E8DFC2] p-6 sm:p-7 rounded-sm shadow-xs flex flex-col justify-between hover:border-[#AF8F5C] transition-all duration-300">
+                <div>
+                  <!-- Image containing direct reference to target file -->
+                  <div class="relative aspect-video w-full rounded-xs border border-stone-200 overflow-hidden mb-5 bg-[#FAF6ED]">
+                    <img
+                      src="https://github.com/lightlab316/Masterpiece-in-Progress/blob/main/src/%E6%AD%B2%E6%9C%88.jpeg?raw=true"
+                      alt="歲月 老奶奶石名品"
+                      class="w-full h-full object-cover grayscale-[1%] brightness-[99%] hover:scale-103 transition-transform duration-500"
+                      referrerPolicy="no-referrer"
+                      onerror="this.onerror=null; this.src='https://github.com/lightlab316/Masterpiece-in-Progress/blob/main/src/%E6%AD%B2%E6%9C%88.jpeg?raw=true';"
+                    />
+               
+                  </div>
+
+                  <div class="flex items-center justify-between mb-2">
+                    <h4 class="text-xl font-zh-serif font-black text-[#2C241B]" id="exhibit-stone-b-title">歲月 / 老奶奶石</h4>
+                  </div>
+                  <p class="text-[12px] text-[#A5998A] font-zh-serif tracking-widest uppercase mb-3 font-semibold">內蒙古戈壁奇珍 • 風沙自然刻蝕</p>
+                  
+                  <p class="text-[14px] sm:text-[15px] text-[#5E5142] font-zh-serif leading-relaxed text-justify mb-5" id="exhibit-stone-b-desc">
+                    歷經數億年地殼震撼與無休止的乾旱風沙撞擊，表皮自然形成了眼窩內縮、鼻梁凸起、滿面紋理的老奶奶和藹容顏，其髮絲、皴裂甚至嘴唇線條極其傳神。大自然以億萬年之工，親手雕鏤了這件充滿神聖靜美的藝術品。
+                  </p>
+                </div>
+
+              </div>
+
+            </div>
+          </div>
+
+        </section>
+
+        <!--=======================================================
+            ROOM 3: 形象石故事 (STONE STORIES - Carousel Slider)
+            =======================================================-->
+        <section id="room-stories" class="room-section hidden flex flex-col space-y-10 animate-fade-in">
+          
+          <div class="text-center py-2 select-none">
+            <span class="text-[#AF8F5C] text-xs font-bold tracking-[0.2em] block">❦ 重點展區 CAROUSEL STORIES ❦</span>
+            <h2 class="text-3xl sm:text-4xl font-zh-serif tracking-[0.2em] font-extrabold text-[#2C241B] mt-2">
+              形象奇石物語
+            </h2>
+            <p class="text-[11px] text-stone-400 font-serif tracking-widest uppercase mt-1">SIX NATURAL Masterpieces AND SOUL REFLECTIONS</p>
+          </div>
+
+          <!-- Horizontal Carousel Slider Main Exhibit Showcase -->
+          <div class="relative max-w-4xl mx-auto w-full border border-[#E3D6C1] p-5 sm:p-8 bg-white shadow-xl rounded-sm">
+            
+            <span class="absolute top-3.5 left-4 text-[10px] text-stone-400 font-serif tracking-[0.2em] font-bold">MIP ACTIVE EXHIBITION BOX</span>
+            <span id="carousel-indicator-badge" class="absolute top-3.5 right-4 text-[11px] text-[#AF8F5C] font-serif font-black tracking-widest">01 / 06</span>
+
+            <div class="grid grid-cols-1 md:grid-cols-12 gap-8 items-center pt-6 pb-2 min-h-[380px]">
+              
+              <!-- Left side: image section with float badges -->
+              <div class="md:col-span-5 flex flex-col items-center">
+                <div class="relative w-full aspect-square max-w-[280px] rounded-xs border border-stone-200 overflow-hidden shadow-md">
+                  <img
+                    id="carousel-img"
+                    src="https://github.com/lightlab316/Masterpiece-in-Progress/blob/main/src/%E5%A4%A7%E8%B1%A1%E7%9F%B3.jpg?raw=true"
+                    alt="形象石圖片"
+                    class="w-full h-full object-cover grayscale-[1%] brightness-[97%] transition-opacity duration-300"
+                    referrerPolicy="no-referrer"
+                  />
+                  <!-- Floating sound narrative shortcut inside slider image -->
+                  <button
+                    id="carousel-play-narration"
+                    class="absolute bottom-3 right-3 p-2 bg-[#AF8F5C] text-white rounded-full hover:bg-[#8A6D3B] shadow-md transition-all cursor-pointer hover:scale-105"
+                    title="播報語音導讀"
+                  >
+                    <svg class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M15.536 8.464a5 5 0 010 7.072m2.828-9.9a9 9 0 010 12.728M5.586 15H4a1 1 0 01-1-1v-4a1 1 0 011-1h1.586l4.707-4.707C10.923 3.663 12 4.109 12 5v14c0 .891-1.077 1.337-1.707.707L5.586 15z" /></svg>
+                  </button>
+                </div>
+              </div>
+
+              <!-- Right side: storytelling metadata with expanded vertical text spacing -->
+              <div class="md:col-span-7 flex flex-col justify-center space-y-4 select-text">
+                <div class="border-b border-stone-100 pb-3">
+                  <h3 id="carousel-stone-name" class="text-3xl font-zh-serif font-black text-[#2C241B]">大象石</h3>
+                  <p id="carousel-stone-tagline" class="text-[15px] sm:text-[17px] text-[#AF8F5C] font-zh-serif font-bold tracking-widest mt-1">「尋找你真正的價值吧！」</p>
+                </div>
+
+                <p id="carousel-stone-desc" class="text-[15px] sm:text-[16px] text-[#4E3F30] font-zh-serif leading-relaxed text-justify">
+                  從一般角度看，牠不過是一塊在荒野中經受風霜、起伏不平的不起眼巨石。但只要我們換個位置，從某個特定、正確的核心角度重新端詳，卻能驚喜地看見一隻昂首甩鼻、生動無比的宏偉大象形象。這件天然傑作啟迪我們：不論看人生、萬物還是自己，評價完全取決於你選擇站立的視角。
+                </p>
+
+                <!-- Custom Reflection Guide Plaque -->
+                <div class="bg-[#FAF6EE] border-l-4 border-[#AF8F5C] p-4 rounded-r-xs">
+                  <h5 class="text-[12px] font-bold tracking-widest font-serif text-[#AF8F5C] uppercase flex items-center"><span class="mr-1">🧭</span> SOUL REFLECTION • 引導思考</h5>
+                  <ul id="carousel-reflection-list" class="text-[13px] sm:text-[14px] text-[#5E5142] font-zh-serif leading-relaxed space-y-1.5 mt-2">
+                    <!-- Reflection questions inserted via JS -->
+                  </ul>
+                </div>
+              </div>
+
+            </div>
+
+            <!-- Pre & Next arrows for desktop navigation -->
+            <button
+              id="carousel-btn-prev"
+              class="absolute left-2 top-1/2 -translate-y-1/2 w-10 h-10 rounded-full border border-stone-200 bg-white/90 shadow-md hover:shadow-lg hover:border-[#AF8F5C] text-[#8A6D3B] hover:text-[#5E4A28] flex items-center justify-center transition-all cursor-pointer"
+              title="上一顆奇石"
+            >
+              <svg class="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5"><path stroke-linecap="round" stroke-linejoin="round" d="M15 19l-7-7 7-7" /></svg>
+            </button>
+            <button
+              id="carousel-btn-next"
+              class="absolute right-2 top-1/2 -translate-y-1/2 w-10 h-10 rounded-full border border-stone-200 bg-white/90 shadow-md hover:shadow-lg hover:border-[#AF8F5C] text-[#8A6D3B] hover:text-[#5E4A28] flex items-center justify-center transition-all cursor-pointer"
+              title="下一顆奇石"
+            >
+              <svg class="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5"><path stroke-linecap="round" stroke-linejoin="round" d="M9 5l7 7-7 7" /></svg>
+            </button>
+
+          </div>
+
+          <!-- Symmetrical dots indicator for mobile & desktop visual flow -->
+          <div class="flex items-center justify-center space-x-2" id="carousel-dots-indicator">
+            <!-- Loaded by javascript -->
+          </div>
+
+          <!-- Bottom Thumbnails bar as requested -->
+          <div class="space-y-4">
+            <h4 class="text-center text-[11px] tracking-[0.25em] font-serif font-black text-[#A5998A] uppercase">
+              點 擊 縮 圖 快速 跳 轉 展 件 • THUMBNAIL EXHIBITS
+            </h4>
+            <div class="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-6 gap-3 max-w-4xl mx-auto" id="carousel-thumbnails-root">
+              <!-- Instantiated via Javascript -->
+            </div>
+          </div>
+
+        </section>
+
+        <!--=======================================================
+            ROOM 4: 靈感的詩 (SPIRIT POEMS)
+            =======================================================-->
+        <section id="room-poems" class="room-section hidden flex flex-col space-y-10 animate-fade-in">
+          
+          <div class="text-center py-2 select-none">
+            <span class="text-[#AF8F5C] text-xs font-bold tracking-[0.2em] block">❦ 展壁詩社 SPIRIT WALL ❦</span>
+            <h2 class="text-3xl sm:text-4xl font-zh-serif tracking-[0.2em] font-extrabold text-[#2C241B] mt-2">
+              靈感的詩
+            </h2>
+            <p class="text-[11px] text-stone-400 font-serif tracking-widest uppercase mt-1">EIGHT FRAMED SPIRIT SONGS HANGING ON PARCHMENT</p>
+          </div>
+
+          <!-- Frame instructions hint -->
+          <div class="text-center text-[#8A6D3B] font-zh-serif text-[14px] select-none -mt-3">
+            <p>「點擊下方任一裝裱在牆上的詩框，即可翻開泛黃詩卷、安靜聆聽溫柔朗誦。」</p>
+          </div>
+
+          <!-- Poetry Gallery grid representing elegant gallery wall layout -->
+          <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 max-w-5xl mx-auto" id="poems-wall-grid">
+            <!-- Loaded recursively by JS with beautiful frames and elegant textures -->
+          </div>
+
+          <!-- GORGEOUS LIGHTBOX POPUP DIALOG MOUNT FOR ACTIVE POEM EXPANSION -->
+          <div id="poem-lightbox-layer" class="fixed inset-0 bg-black/55 backdrop-blur-xs z-50 transition-opacity duration-300 opacity-0 pointer-events-none flex items-center justify-center p-4">
+            
+            <!-- Dual folded book layout structure simulating weathered vintage manuscript -->
+            <div id="poem-inner-card" class="relative max-w-2xl w-full bg-[#FAF5E6] border border-[#D5C299] p-6 sm:p-9 rounded-sm shadow-2xl scale-95 transition-transform duration-300 select-text">
+              
+              <!-- Close box shortcut -->
+              <button id="poem-lightbox-close" class="absolute top-4 right-4 text-stone-400 hover:text-[#2C241B] transition-colors p-1.5 bg-stone-100 rounded-full cursor-pointer" title="闔上詩冊">
+                <svg class="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5"><path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12" /></svg>
+              </button>
+
+              <!-- Inner Golden line border box inside scroll layout -->
+              <div class="border border-[#E0CEAC] p-6 sm:p-8 bg-[#FAF6EE] relative rounded-xs min-h-[350px] flex flex-col justify-between">
+                
+                <span class="absolute top-2 left-3 text-[10px] text-stone-400 font-serif tracking-widest">SOUL POETRY CHRONICLE</span>
+                <span class="absolute top-2 right-3 text-[10px] text-[#AF8F5C] font-serif tracking-widest uppercase">MIP COLLECTION</span>
+
+                <div class="text-center space-y-4 pt-3">
+                  <h3 id="expanded-poem-title" class="text-2xl sm:text-3xl font-zh-serif font-black text-[#8A6D3B] tracking-wide border-b border-[#EADFC0]/55 pb-3">《在風中 仍舊堅定》</h3>
+                  <!-- Custom Scroll parchment paper leaf print -->
+                  <p id="expanded-poem-body" class="text-[17px] sm:text-[19px] text-[#423525] font-zh-serif leading-[2.1] whitespace-pre-wrap tracking-wider inline-block font-medium">不論風吹得有多麼猛烈，\n岩石底下的根...\n依然挺拔。</p>
+                </div>
+
+                <div class="mt-6 pt-3 border-t border-[#E8DFC2] flex items-center justify-between">
+                  <span id="expanded-poem-citation" class="text-stone-400 font-semibold tracking-wider font-zh-serif text-[12px]">── 信心之章</span>
+                  <button
+                    id="expanded-poem-tts"
+                    class="flex items-center space-x-1.5 px-4 py-2 rounded-full bg-[#AF8F5C]/11 hover:bg-[#AF8F5C] hover:text-white text-[#8A6D3B] transition-all text-xs font-bold tracking-widest font-zh-serif border border-[#AF8F5C]/25 cursor-pointer"
+                  >
+                    <svg class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M15.536 8.464a5 5 0 010 7.072m2.828-9.9a9 9 0 010 12.728M5.586 15H4a1 1 0 01-1-1v-4a1 1 0 011-1h1.586l4.707-4.707C10.923 3.663 12 4.109 12 5v14c0 .891-1.077 1.337-1.707.707L5.586 15z" /></svg>
+                    <span>智慧語音朗讀</span>
+                  </button>
+                </div>
+              </div>
+
+            </div>
+          </div>
+
+        </section>
+
+        <!--=======================================================
+            ROOM 5: 箴言話語 (SOUL CHIMES)
+            =======================================================-->
+        <section id="room-proverbs" class="room-section hidden flex flex-col space-y-12 animate-fade-in">
+          
+          <div class="text-center py-2 select-none">
+            <span class="text-[#AF8F5C] text-xs font-bold tracking-[0.2em] block">❦ 心靈觸頻 CHANT GAME ❦</span>
+            <h2 class="text-3xl sm:text-4xl font-zh-serif tracking-[0.2em] font-extrabold text-[#2C241B] mt-2">
+              箴言話語 • 心靈抽籤
+            </h2>
+            <p class="text-[11px] text-stone-400 font-serif tracking-widest uppercase mt-1">今天，你想聽見什麼提醒呢？</p>
+          </div>
+
+          <!-- Gemstones Row selection for drawing cards -->
+          <div class="space-y-6">
+            <h4 class="text-center text-[15px] tracking-[0.22em] font-zh-serif font-black text-[#8A6D3B] capitalize">
+              「請點選下方四顆孕含能量的發光寶石，聆聽安靜與真理之音」
+            </h4>
+            
+            <div class="grid grid-cols-2 md:grid-cols-4 gap-6 max-w-3xl mx-auto" id="proverb-gems-container">
+              <!-- Loaded recursively by JS with exquisite translucent glowing highlights & shadow classes -->
+            </div>
+          </div>
+
+          <!-- DRAWN PROVERB ACCENT CARD STAGE -->
+          <div id="drawn-box-stage" class="hidden transition-all duration-500 overflow-hidden max-w-2xl mx-auto w-full flex flex-col items-center">
+            
+            <div class="w-full relative p-1.5 bg-gradient-to-r from-[#AF905F]/15 to-amber-700/5 border border-[#AF8F5C]/25 rounded-xs select-text shadow-lg">
+              
+              <div class="border border-[#CBDBCB]/0 bg-[#FAF4E5] p-6 sm:p-9 relative rounded-xs text-center border-t-4" id="drawn-quote-pnl" style="border-top-color: #AF8F5C;">
+                <span class="absolute top-2.5 left-4 text-[10px] text-[#AF8F5C] tracking-[0.25em] font-serif font-bold uppercase" id="drawn-gem-badge">希望之約 HOPE</span>
+                <span class="absolute top-2.5 right-4 text-[10px] text-stone-400 tracking-wider font-serif">MIP PARCHMENT</span>
+
+                <p id="drawn-text-area" class="text-[17px] sm:text-[19px] text-[#2C241B] font-zh-serif font-extrabold leading-relaxed py-6 opacity-0 translate-y-1 transition-all duration-700">
+                  「但那等候中央的必重新得力。他們必如鷹展翅，奔跑卻不疲累。」
+                </p>
+
+                <div class="flex items-center justify-between border-t border-stone-200/40 pt-4 mt-2">
+                  <button
+                    id="btn-drawn-tts"
+                    class="flex items-center space-x-1.5 px-3 py-1.5 rounded-full bg-[#AF8F5C]/11 hover:bg-[#AF8F5C] hover:text-white text-[#8A6D3B] transition-all text-xs font-semibold tracking-wide font-zh-serif cursor-pointer"
+                  >
+                    <svg class="w-3.5 h-3.5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M15.536 8.464a5 5 0 010 7.072m2.828-9.9a9 9 0 010 12.728M5.586 15H4a1 1 0 01-1-1v-4a1 1 0 011-1h1.586l4.707-4.707C10.923 3.663 12 4.109 12 5v14c0 .891-1.077 1.337-1.707.707L5.586 15z" /></svg>
+                    <span>朗讀金言</span>
+                  </button>
+
+                  <button
+                    id="btn-re-draw"
+                    class="flex items-center space-x-1.5 px-4.5 py-1.5 rounded-full bg-[#8A6D3B] text-white hover:bg-[#5E4A28] shadow-xs cursor-pointer transition-all text-xs font-bold tracking-widest font-zh-serif"
+                  >
+                    <!-- Refresh cycle icon SVG -->
+                    <svg class="w-3.5 h-3.5 animate-[spin_8s_linear_infinite]" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M4 4v5h.582m15.356 2A8.001 8.001 0 1121.21 7.89M9 11l3-3 3 3" /></svg>
+                    <span>再抽一句</span>
+                  </button>
+                </div>
+              </div>
+
+            </div>
+          </div>
+
+        </section>
+
+        <!--=========================================
+            MUSEUM FOOTER ORNAMENT
+            =========================================-->
+        <footer class="mt-16 pt-6 border-t border-[#E8DFC2] flex flex-col md:flex-row items-center justify-between text-stone-400 select-none text-[12px] md:text-[13px] font-zh-serif">
+          <p class="cursor-default">MASTERPIECE IN PROGRESS 奇石・詩・箴言展 © 所有文字與聲音權利均屬展間</p>
+          <div class="flex space-x-4 mt-3 md:mt-0 font-serif font-bold text-[#A5998A]">
+            <span>COURT ROOM #4</span>
+            <span class="text-[#AF8F5C] tracking-widest">•</span>
+            <span>SPIRITUAL GEOLOGY</span>
+          </div>
+        </footer>
+
+      </main>
+
+    </div>
+
   </body>
 </html>
-
